@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Chusqer;
 use App\Hashtag;
 use App\Http\Requests\CreateChusqerRequest;
+use App\Likes;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -167,6 +169,20 @@ class ChusqersController extends Controller
         ]);
     }
 
+    public function like(Request $request, Chusqer $chusqer){
+
+        $user = $request->user();
+        $user->like()->attach($chusqer);
+
+
+    }
+
+    public function dislike(Request $request, Chusqer $chusqer){
+
+        $user = $request->user();
+        $user->like()->detach($chusqer);
+
+    }
 
 
 }

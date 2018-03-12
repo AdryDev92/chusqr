@@ -10,6 +10,7 @@
             <a href="/hashtag/{{ $hashtag->slug }}"><span class="label label-primary">{{ $hashtag->slug }}</span></a>
         @endforeach
     </p>
+
     @if(Auth::user() && Auth::user()->amI())
     <div class="card-section">
         @can('update', $chusqer)
@@ -20,6 +21,9 @@
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
 
+            @can
+            <button type="submit" class="button btn btn-danger btn-md">{{ $user->like->count() }}</button>
+            @endcan
             <button type="submit" class="button alert">Borra</button>
 
         </form>

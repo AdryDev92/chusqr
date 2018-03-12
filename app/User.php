@@ -81,4 +81,14 @@ class User extends Authenticatable
         return Auth::user()->id == $this->id;
     }
 
+    public function like(){
+        return $this->belongsToMany(
+            Likes::class,
+            'likes',
+            'likes',
+            'user_id',
+            'chusqer_id'
+        );
+    }
+
 }
